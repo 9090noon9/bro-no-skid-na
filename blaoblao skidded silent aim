@@ -1,0 +1,76 @@
+local ScreenGui = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextLabel")
+
+ScreenGui.Parent = game:GetService("CoreGui")
+TextLabel.Parent = ScreenGui
+TextLabel.Size = UDim2.new(0, 600, 0, 200)
+TextLabel.Position = UDim2.new(0.5, -300, 0.5, -100)
+TextLabel.Text = "blaoblao Streamable\nSilent"
+TextLabel.Font = Enum.Font.Arcade
+TextLabel.TextSize = 50
+TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel.BackgroundTransparency = 1
+TextLabel.TextTransparency = 1
+TextLabel.TextStrokeTransparency = 0
+TextLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextWrapped = true
+TextLabel.TextYAlignment = Enum.TextYAlignment.Center
+
+local BlurEffect = Instance.new("BlurEffect")
+
+BlurEffect.Size = 0
+BlurEffect.Parent = game:GetService("Lighting")
+
+for i = 1, 100 do
+	BlurEffect.Size = i * 0.1
+	TextLabel.TextTransparency = 1 - i / 100
+	task.wait(0.01)
+end
+
+task.spawn(function(p1)
+	while true do
+		for i = 0, 1, 0.01 do
+			p1.TextColor3 = Color3.fromHSV(i, 1, 1)
+			task.wait(0.05)
+		end
+	end
+end, TextLabel)
+task.wait(5)
+
+for i = 1, 100 do
+	BlurEffect.Size = 10 - i * 0.1
+	TextLabel.TextTransparency = i / 100
+	task.wait(0.01)
+end
+
+BlurEffect:Destroy()
+ScreenGui:Destroy()
+getgenv().Silent = {
+	Settings = {
+		Toggled = true,
+		AimPart = "UpperTorso",
+		HitChance = 9999,
+		Prediction = {
+			Toggled = true,
+			Value = 0.135,
+			AutoPred = false,
+			JumpOffset = 0.08,
+			AntiGroundShots = true,
+			Resolve = false
+		},
+		Circle = {
+			Visible = false,
+			Transparency = 0.5,
+			Thickness = 3,
+			NumSides = 100,
+			Radius = 100,
+			Filled = false
+		},
+		RainbowTarget = false,
+		WallCheck = true,
+		AutoShoot = false,
+		BulletTp = false,
+		FriendCheck = false
+	}
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/9090noon9/bro-no-skid-na/refs/heads/main/deobfuscated.lua%20(7).txt", true))()
